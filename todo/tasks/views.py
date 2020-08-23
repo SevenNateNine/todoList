@@ -7,4 +7,4 @@ from .models import Task
 
 # get tasks and display them
 def index(request):
-    return render('hello')
+    return render(request, 'todo/index.html')

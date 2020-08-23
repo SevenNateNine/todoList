@@ -10,10 +10,12 @@ admin.site.index_title = "Welcome to Tasks Admin"
 
 class TaskAdmin(admin.ModelAdmin):
     fieldsets = [
-        (None, {'fields': ['task_text']}), 
+        (None, {'fields': ['task_title']}), 
+        (None, {'fields': ['task_description']}), 
+        (None, {'fields': ['completed']}), 
         ('Date Information', 
             {
-                'fields': ['creation_date'], 
+                'fields': ['creation_date', 'updated_date'], 
                 'classes':['collapse'],
             }
         )    
