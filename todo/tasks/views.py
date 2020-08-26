@@ -7,4 +7,6 @@ from .models import Task
 
 # get tasks and display them
 def index(request):
-    return render(request, 'todo/index.html')
+    latest_tasks = Task.objects.order_by('-updated_date')
+    context = {'latest_task_list' : latest_tasks}
+    return render(request, 'todo/index.html', context)

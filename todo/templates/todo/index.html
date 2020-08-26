@@ -9,5 +9,21 @@
         What do you need to do today?"</a
       >
   </div>
+  {% if latest_task_list %}
+    {% for task in latest_task_list %}
+      <div class="card mb-3">
+          <div class="class-body">
+            <input type="checkbox">  {{task.task_title}}</input>
+          </div>
+      </div>
+    {% endfor %}
+  {% else %} 
+    <p>No tasks</p>
+  {% endif %}
+  <input type=button value="Add new task"></input>
+  <input type=checkbox>Show archive</input>
+  <input type=checkbox>Show completed</input>
+  <input type=checkbox>Sort by newest</input>
+  <input type=checkbox>Sort by unfinished</input>
   </div>
 {% endblock %}
