@@ -4,14 +4,17 @@
 <style type="text/css">
   .sidepanel{
     position: fixed;
-    
-    z-index: 1;
+    /* z-index: 1; */
     top: 0;
-    right: 0;
-    color: blue;
-    overflow-x: hidden;
-    padding-top: 20px; 
-    margin-top: 100px;
+    right: 10px;
+    /* overflow-x: hidden; */
+    padding-top: 0px; 
+    margin-top: 90px;
+  }
+
+  .sideheader{
+    margin-top: 10px;
+    font-size: 16px;
   }
 </style>
 
@@ -30,9 +33,13 @@
       <li class="list-group-item">
         <input type="checkbox">  
           {{task.task_title}} 
-          <a class="float-right" href="#">
+          <form action="{% url 'tasks:delete' task.id %}" method="post">
+            {% csrf_token %}
+            <input type="submit" value="Delete">
+          </form>
+          <!-- <button class="btn float-right">
             <i class="fa fa-minus-square" aria-hidden="true"></i>
-          </a>
+          </button> -->
         </input>
       </li>
     {% endfor %}
@@ -43,10 +50,19 @@
   </div>
 </div>
 
-</div class="sidepanel">
-  <div class="card text-left">
+<div class="sidepanel">
+  <div class="card">
     <ul class="list-group list-group-flush">
-      <h5 class="text-center">Sorting</h5>
+      <li class="list-group-item text-center">
+        <button class="btn btn-dark">
+          Add task 
+          <i class="fa fa-plus-square" aria-hidden="true"></i>
+        </button>
+      </li>
+    </ul>
+
+    <h5 class="sideheader text-center">Sorting</h5>
+    <ul class="list-group list-group-flush">
       <li class="list-group-item">
         <input type=checkbox> Sort by newest</input>
       </li>
@@ -54,9 +70,9 @@
         <input type=checkbox> Sort by unfinished</input>
       </li>
     </ul>
-    <br>
+
+    <h5 class="sideheader text-center">Filters</h5>
     <ul class="list-group list-group-flush">
-      <h5 class="text-center">Filters</h5>
       <li class="list-group-item">
         <input type=checkbox> Show archive</input>
       </li>

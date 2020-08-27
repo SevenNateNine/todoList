@@ -1,5 +1,5 @@
 from django.http import HttpResponse, HttpResponseRedirect
-from django.shortcuts import get_object_or_404, render
+from django.shortcuts import get_object_or_404, redirect, render
 from django.template import loader
 from django.urls import reverse
 
@@ -17,7 +17,12 @@ def detail(request, task_id):
 
 # delete specific task
 def delete(request, task_id):
-    pass
+    task = get_object_or_404(Task, pk=task_id)
+    if request.method == 'POST':
+        task.delete()
+        return redirect('/')
+        
+    return render(request, 'todo/index.html', {'task': task})
 
 # mark task as complete
 def complete(request, task_id):
