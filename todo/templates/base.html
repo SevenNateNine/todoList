@@ -4,12 +4,30 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css" integrity="sha384-9aIt2nRpC12Uk9gS9baDl411NQApFmC26EwAOH8WgZl5MYYxFfc+NcPb1dKGj7Sk" crossorigin="anonymous">
+    <script src="https://use.fontawesome.com/dad5c710d6.js"></script>
+
     <title>Pollster {% block title %}{% endblock %}</title>
+
+    <style type="text/css">
+        .main{
+            margin-left:0px;
+            padding: 0px 0px;
+        }
+    </style>
 </head>
 <body>
+   
+    
     <!-- NavBar -->
-    {% include 'partials/_navbar.html' %}
+    <div class="main">
+        {% include 'partials/_navbar.html' %}
+    </div>
+
+    <!-- SideBar -->
+    {% include 'partials/_sidebar.html' %}
+    
     <div class="container">
+        
         <div class="row">
             <div class="col-md-6 m-auto">
                 {% block content %}{% endblock %}

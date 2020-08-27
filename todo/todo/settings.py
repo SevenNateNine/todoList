@@ -33,6 +33,7 @@ ALLOWED_HOSTS = []
 
 INSTALLED_APPS = [
     'tasks.apps.TaskConfig',
+    "django_static_fontawesome",
     'django.contrib.admin',
     'django.contrib.auth',
     'django.contrib.contenttypes',

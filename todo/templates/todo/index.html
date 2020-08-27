@@ -13,7 +13,12 @@
     {% for task in latest_task_list %}
       <div class="card mb-3">
           <div class="class-body">
-            <input type="checkbox">  {{task.task_title}}</input>
+            <input type="checkbox">  
+              {{task.task_title}} 
+              <button>
+                x
+              </button>
+            </input>
           </div>
       </div>
     {% endfor %}

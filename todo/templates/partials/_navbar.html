@@ -1,5 +1,11 @@
+{% load static %}
+
+{% block style %}
+        <link rel="stylesheet" type="text/css" href="{% static "fontawesome/css/all.min.css" %}" />
+    {% endblock %}
+
 <nav class="navbar navbar-dark bg-primary mb-4">
-    <div class="container">
-        <a href="/" class="navbar-brand">Todo</a>
-    </div>
+    <a href="/" class="navbar-brand">Todo</a>
+    <i class="fas fa-cog fa-2x"></i> 
+
 </nav>
