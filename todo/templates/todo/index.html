@@ -1,6 +1,20 @@
 {% extends 'base.html' %}
 {% block content %}
 
+<style type="text/css">
+  .sidepanel{
+    position: fixed;
+    
+    z-index: 1;
+    top: 0;
+    right: 0;
+    color: blue;
+    overflow-x: hidden;
+    padding-top: 20px; 
+    margin-top: 100px;
+  }
+</style>
+
 <div class="card text-center">
   <div class="card-body">
     <h1>Todo Today!</h1>
@@ -9,26 +23,49 @@
         What do you need to do today?"</a
       >
   </div>
-  {% if latest_task_list %}
-    {% for task in latest_task_list %}
-      <div class="card mb-3">
-          <div class="class-body">
-            <input type="checkbox">  
-              {{task.task_title}} 
-              <button>
-                x
-              </button>
-            </input>
-          </div>
-      </div>
+  <div class="card text-left">
+    {% if latest_task_list %}
+    <ul class="list-group list-group-flush">
+      {% for task in latest_task_list %}
+      <li class="list-group-item">
+        <input type="checkbox">  
+          {{task.task_title}} 
+          <a class="float-right" href="#">
+            <i class="fa fa-minus-square" aria-hidden="true"></i>
+          </a>
+        </input>
+      </li>
     {% endfor %}
-  {% else %} 
-    <p>No tasks</p>
-  {% endif %}
-  <input type=button value="Add new task"></input>
-  <input type=checkbox>Show archive</input>
-  <input type=checkbox>Show completed</input>
-  <input type=checkbox>Sort by newest</input>
-  <input type=checkbox>Sort by unfinished</input>
+    </ul>
+    {% else %} 
+      <p>No tasks</p>
+    {% endif %}
   </div>
+</div>
+
+</div class="sidepanel">
+  <div class="card text-left">
+    <ul class="list-group list-group-flush">
+      <h5 class="text-center">Sorting</h5>
+      <li class="list-group-item">
+        <input type=checkbox> Sort by newest</input>
+      </li>
+      <li class="list-group-item">
+        <input type=checkbox> Sort by unfinished</input>
+      </li>
+    </ul>
+    <br>
+    <ul class="list-group list-group-flush">
+      <h5 class="text-center">Filters</h5>
+      <li class="list-group-item">
+        <input type=checkbox> Show archive</input>
+      </li>
+      <li class="list-group-item">
+        <input type=checkbox> Show completed</input>
+      </li>
+    </ul>
+  </div>
+</div>
+
+  
 {% endblock %}
