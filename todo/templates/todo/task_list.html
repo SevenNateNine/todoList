@@ -1,0 +1,50 @@
+<div class="card text-left">
+  {% if latest_task_list %}
+    <ul class="list-group list-group-flush">
+    {% for task in latest_task_list %}
+    <li class="list-group-item">
+      <div class="row">
+        <div class="col-sm-1">
+          <input type="checkbox">  </input>
+          </div>
+          <div class="col">
+            <a class="" data-toggle="collapse" href="#collapseExample{{ forloop.counter }}" role="button" aria-expanded="false" aria-controls="collapseExample">
+                {{task.task_title}} 
+            </a>
+          </div>
+        <div class="col">
+          <form action="{% url 'tasks:delete' task.id %}" method="POST">
+            {% csrf_token %}
+            <button type="submit" class="btn float-right">
+              <i class="fa fa-minus-square pull-right" aria-hidden="true"></i>
+            </button>
+          </form>
+          <!-- for editing -->
+          <button type="submit" class="btn float-right">
+            <i class="fa fa-pencil-square-o pull-right" aria-hidden="true"></i>
+          </button>
+        </div>
+      </div>
+    
+
+      <div class="collapse" id="collapseExample{{ forloop.counter }}">
+        <div class="card card-body">
+        <!-- <b>Description:</b>  -->
+        {% if task.task_description != None %}
+            {{task.task_description}}
+            <br>
+        {% endif %}
+        <p>
+            <sub><b>Created:</b> {{task.creation_date}}</sub>
+            <br>
+            <sub><b>Updated:</b> {{task.updated_date}}</sub> 
+        </p>
+        </div>
+      </div>
+    </li>
+    {% endfor %}
+</ul>
+{% else %} 
+    <p>No tasks</p>
+{% endif %}
+</div>

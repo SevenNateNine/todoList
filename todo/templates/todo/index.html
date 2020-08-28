@@ -17,6 +17,13 @@
     font-size: 16px;
   }
 
+  a {
+    color: black
+  }
+  a:hover {
+    color: black
+  }
+
   input[type="submit"]{
     font-family: "Font Awesome 5 Free";
   }
@@ -30,40 +37,7 @@
         What do you need to do today?"</a
       >
   </div>
-  <div class="card text-left">
-    {% if latest_task_list %}
-    <ul class="list-group list-group-flush">
-      {% for task in latest_task_list %}
-      <li class="list-group-item">
-        <div class="row">
-          <div class="col-sm-1">
-            <input type="checkbox">  </input>
-            
-          </div>
-          <div class="col">
-            {{task.task_title}} 
-          </div>
-          <div class="col">
-            <button type="submit" class="btn float-right">
-              <i class="fa fa-minus-square pull-right" aria-hidden="true"></i>
-            </button>
-          </div>
-          <div class="col">
-              <form action="{% url 'tasks:delete' task.id %}" method="POST">
-                {% csrf_token %}
-                <button type="submit" class="btn float-right">
-                  <i class="fa fa-minus-square pull-right" aria-hidden="true"></i>
-                </button>
-              </form>
-          </div>
-        </div>
-      </li>
-    {% endfor %}
-    </ul>
-    {% else %} 
-      <p>No tasks</p>
-    {% endif %}
-  </div>
+  {% include 'todo/task_list.html' %}
   
   {% include 'todo/add_task.html' %}
   <div class="card-body">
