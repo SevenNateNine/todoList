@@ -38,10 +38,14 @@
     <li class="list-group-item">
       <div class="row">
         <div class="col">
-          <input type="checkbox" >  
+          <form action="{% url 'tasks:complete' task.id %}" method="POST">
+            {% csrf_token %}
+            <input type="checkbox" onChange="this.form.submit()" {% if task.completed == True %} checked {% endif %}>  
+
             <a class="" data-toggle="collapse" href="#task_extended{{ forloop.counter }}" role="button" aria-expanded="false" aria-controls="task_extended">
               {{task.task_title}}
             </a> 
+          </form>
           </input>
         </div>
         <div class="col">

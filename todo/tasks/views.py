@@ -4,6 +4,7 @@ from django.template import loader
 from django.urls import reverse
 
 from .models import Task
+import datetime
 
 # get tasks and display them
 def index(request):
@@ -25,8 +26,14 @@ def delete(request, task_id):
     return render(request, 'todo/index.html', {'task': task})
 
 # mark task as complete
-def complete(request, task_id):
-    pass
+def toggle_complete(request, task_id):
+    task = get_object_or_404(Task, pk=task_id)
+    if request.method == 'POST':
+        task.completed = not task.completed
+        task.updated_date = datetime.datetime.now()
+        task.save()
+        return redirect('/')
+    return render(request, 'todo/index.html', {'task': task})
 
 # add new task, probably will need more parameters
 def add_task(request):
