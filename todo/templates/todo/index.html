@@ -40,17 +40,8 @@
   {% include 'todo/task_list.html' %}
   
   {% include 'todo/aside.html' %}
-  <div class="card-body">
-    <form action="{% url 'tasks:add_task' %}" method="POST">
-      
-      {% csrf_token %}
-        <button type="submit" class="btn btn-dark">
-          Add
-          <i class="fa fa-plus-square" aria-hidden="true"></i>
-        </button>
-        <input type="text" id="task_title" name="task_title" placeholder="Enter your new task..." value="">            
-    </form>
-  </div>
+  
+  {% include 'todo/add_task.html' %}
   
 </div>
 

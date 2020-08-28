@@ -38,10 +38,13 @@ def toggle_complete(request, task_id):
 # add new task, probably will need more parameters
 def add_task(request):
     new_title = request.POST['task_title']
+    new_description = request.POST['task_description']
+    if new_description == "":
+        new_description = None
     if request.method == 'POST':
         if new_title == "":
             return redirect('/')
-        task_obj = Task(task_title=new_title)
+        task_obj = Task(task_title=new_title, task_description=new_description)
         task_obj.save()
         return redirect('/')
     return render(request, 'todo/index.html')
