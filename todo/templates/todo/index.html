@@ -36,12 +36,19 @@
       {% for task in latest_task_list %}
       <li class="list-group-item">
         <div class="row">
-          <div class="col-sm-6">
+          <div class="col-sm-1">
             <input type="checkbox">  </input>
+            
+          </div>
+          <div class="col">
             {{task.task_title}} 
           </div>
-
-          <div class="col-sm-6">
+          <div class="col">
+            <button type="submit" class="btn float-right">
+              <i class="fa fa-minus-square pull-right" aria-hidden="true"></i>
+            </button>
+          </div>
+          <div class="col">
               <form action="{% url 'tasks:delete' task.id %}" method="POST">
                 {% csrf_token %}
                 <button type="submit" class="btn float-right">
@@ -58,6 +65,7 @@
     {% endif %}
   </div>
   
+  {% include 'todo/add_task.html' %}
   <div class="card-body">
     <form action="{% url 'tasks:add_task' %}" method="POST">
       {% csrf_token %}
@@ -68,33 +76,10 @@
         <input type="text" id="task_title" name="task_title" placeholder="Enter your new task..." value="">            
     </form>
   </div>
-    
+  
 </div>
 
-<div class="sidepanel">
-  <div class="card">
 
-    <h5 class="sideheader text-center">Sorting</h5>
-    <ul class="list-group list-group-flush">
-      <li class="list-group-item">
-        <input type=checkbox> Sort by newest</input>
-      </li>
-      <li class="list-group-item">
-        <input type=checkbox> Sort by unfinished</input>
-      </li>
-    </ul>
-
-    <h5 class="sideheader text-center">Filters</h5>
-    <ul class="list-group list-group-flush">
-      <li class="list-group-item">
-        <input type=checkbox> Show archive</input>
-      </li>
-      <li class="list-group-item">
-        <input type=checkbox> Show completed</input>
-      </li>
-    </ul>
-  </div>
-</div>
 
   
 {% endblock %}
