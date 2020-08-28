@@ -21,7 +21,7 @@ def delete(request, task_id):
     if request.method == 'POST':
         task.delete()
         return redirect('/')
-        
+
     return render(request, 'todo/index.html', {'task': task})
 
 # mark task as complete
@@ -30,4 +30,8 @@ def complete(request, task_id):
 
 # add new task, probably will need more parameters
 def add_task(request):
-    pass
+    if request.method == 'POST':
+        task_obj = Task(task_title=request.POST['task_title'])
+        task_obj.save()
+        return redirect('/')
+    return render(request, 'todo/index.html')
