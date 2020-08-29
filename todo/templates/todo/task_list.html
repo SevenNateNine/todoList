@@ -29,6 +29,10 @@
     input[type="submit"]{
       font-family: "Font Awesome 5 Free";
     }
+
+    button{
+      margin-right: -15px;
+    }
 </style>
 
 <div class="card text-left">
@@ -51,24 +55,21 @@
         </div>
         <div class="col-sm-1">
             <!-- edit -->
-          <form action="" method="POST">
-            {% csrf_token %}
-          <button type="submit" class="btn float-right">
-            <i class="fa fa-pencil-square-o pull-right" aria-hidden="true"></i>
+            <button class="btn float-right" data-toggle="collapse" href="#edit_task_extended{{ forloop.counter }}" role="button" aria-expanded="false" aria-controls="edit_task_extended{{ forloop.counter }}">
+              <i class="fa fa-pencil-square-o fa-pull-right" aria-hidden="false"></i>
             </button>
-          </form>
+          
         </div>
         <div class="col-sm-1">
             <!-- delete -->
           <form action="{% url 'tasks:delete' task.id %}" method="POST">
             {% csrf_token %}
             <button type="submit" class="btn float-right">
-              <i class="fa fa-minus-square pull-right" aria-hidden="true"></i>
+              <i class="fa fa-minus-square fa-pull-right" aria-hidden="true"></i>
             </button>
           </form>
         </div>
       </div>
-    
 
       <div class="collapse" id="task_extended{{ forloop.counter }}">
         <div class="card card-body">
@@ -84,6 +85,9 @@
         </p>
         </div>
       </div>
+
+      {% include 'todo/edit_task.html' %}
+
     </li>
     {% endfor %}
 </ul>

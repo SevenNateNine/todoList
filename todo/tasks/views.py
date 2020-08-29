@@ -48,3 +48,19 @@ def add_task(request):
         task_obj.save()
         return redirect('/')
     return render(request, 'todo/index.html')
+
+def edit_task(request, task_id):
+    task = get_object_or_404(Task, pk=task_id)
+    new_title = request.POST['task_title']
+    new_description = request.POST['task_description']
+    if new_description == "":
+        new_description = None
+    if request.method == 'POST':
+        if new_title == "":
+            return redirect('/')
+        task.task_title = new_title
+        task.task_description = new_description
+        task.updated_date = datetime.datetime.now()
+        task.save()
+        return redirect('/')
+    return render(request, 'todo/index.html')

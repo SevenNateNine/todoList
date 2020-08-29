@@ -1,0 +1,35 @@
+<form action="{% url 'tasks:edit_task' task.id %}" method="POST">
+  {% csrf_token %}
+  
+  <div class="collapse" id="edit_task_extended{{ forloop.counter }}">
+    <div class="card card-body">
+      <label>Task Title:</label>
+      <input type="text" id="task_title" name="task_title" placeholder="No title?" value="{{task.task_title}}">   
+      <label>Task Description:</label>
+      <input type="text" id="task_description" name="task_description" placeholder="No description" value="{{task.task_description}}">   
+    </div>
+
+    <button type="submit" class="btn btn-dark">
+      Save Edit
+    </button>
+  </div>
+</form>
+
+<!-- <form action="{% url 'tasks:add_task' %}" method="POST">    
+  {% csrf_token %}
+  <button type="submit" class="btn btn-dark">
+    Add
+    <i class="fa fa-plus-square" aria-hidden="true"></i>
+  </button>
+  <input type="text" id="task_title" name="task_title" placeholder="Enter your new task..." value="">   
+    <a class="" data-toggle="collapse" href="#add_task_extended" role="button" aria-expanded="false" aria-controls="add_task_extended">
+      <i class="fas fa-caret-down"></i>
+    </a> 
+  </input>
+  <div class="collapse" id="add_task_extended">
+    <br>
+    <label>Task Description:</label>
+    <input type="text" id="task_description" name="task_description" placeholder="" value="">   
+  </div>
+</form> -->
+    
