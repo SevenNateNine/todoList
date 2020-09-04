@@ -7,31 +7,31 @@
   </div>
   <span class="border border-secondary">
     <div class="card-body">
-      <form action="{% url 'account:login' %}" method="POST">
+      <form action="{% url 'account:new_account' %}" method="POST">
         {% csrf_token %}
         <div class="row">
           <div class="col-md-12">
             <label>Username</label>
-            <input type="text" id="login_username" name="login_username" placeholder="" value="">
+            <input type="text" id="new_username" name="new_username" placeholder="" value="">
           </div>
         </div>
         <div class="row">
           <div class="col-md-12">
             <label>Password</label>
-            <input type="password" id="login_password" name="login_password" placeholder="" value="">
+            <input type="password" id="new_password" name="new_password" placeholder="" value="">
           </div>
         </div>
         <div class="row">
           <div class="col-md-12 text-center">
             <button type="submit" class="btn btn-dark">
-              Login
+              Create Account!
             </button>
           </div>
         </div>
       </form>
       <div class="row">
         <div class="col-md-12 text-center">
-          No account? Sign up <a href="/user/signup">here</a>
+          Already have an account? Sign in <a href="/user/login">here</a>
         </div>
       </div>
       <div class="row">
