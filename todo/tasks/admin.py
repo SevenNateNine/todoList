@@ -13,6 +13,7 @@ class TaskAdmin(admin.ModelAdmin):
         (None, {'fields': ['task_title']}), 
         (None, {'fields': ['task_description']}), 
         (None, {'fields': ['completed']}), 
+        (None, {'fields': ['author']}), 
         ('Date Information', 
             {
                 'fields': ['creation_date', 'updated_date'], 
