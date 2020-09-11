@@ -1,5 +1,5 @@
 from django.shortcuts import get_object_or_404, redirect, render
-from django.contrib.auth import authenticate, login
+from django.contrib.auth import authenticate, login, logout
 from django.contrib.auth.models import User
 
 # Create your views here.
@@ -7,8 +7,20 @@ from django.contrib.auth.models import User
 def index(request):
     return render(request, 'account/login.html')
 
-def login(request):
-    pass
+def view_login(request):
+    if request.method == 'POST':
+        login_username = request.POST['login_username']
+        login_password = request.POST['login_password']
+        user = authenticate(username=login_username, password=login_password)
+        if user is not None:
+            login(request, user)
+    return redirect('/')
+
+def view_logout(request):
+    if request.method == 'POST':
+        user = request.user
+        logout(request)
+    return redirect('/')
 
 def signup(request):
     return render(request, 'account/signup.html')
