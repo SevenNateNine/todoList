@@ -32,5 +32,5 @@ def new_account(request):
         new_password = request.POST['new_password']
         user = User.objects.create_user(new_username, new_email, new_password)
         user = authenticate(username=new_username, password=new_password)
-        login(user)
+        login(request, user)
     return redirect('/')
