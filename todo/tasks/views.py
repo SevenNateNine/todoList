@@ -11,7 +11,7 @@ import datetime
 # get tasks and display them
 def index(request):
     if request.user.is_authenticated:
-        latest_tasks = Task.objects.filter(author=request.user).order_by('-updated_date')
+        latest_tasks = Task.objects.filter(author=request.user).order_by('completed')
         username = request.user.get_username()
         context = {
             'latest_task_list' : latest_tasks,
