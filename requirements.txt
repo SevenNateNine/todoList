@@ -2,3 +2,4 @@ gunicorn
 Django
 django-heroku
 sqlparse
+django-static-fontawesome
